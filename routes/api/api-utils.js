@@ -38,7 +38,28 @@ const doCreate = (model, initArgs, res) => {
         });
 };
 
-module.exports = { doFindAll, doFindOne, doCreate };
+const doUpdate = (model, updateArgs, idToUpdate, res) => {
+    model.update(
+        updateArgs,
+        {
+            where: {
+                id: idToUpdate
+            }
+        })
+        .then(dbData => {
+            if (!dbData[0]) {
+                res.status(404).json({ message: `No ${model.name} found with this id` });
+                return;
+            }
+            res.json(dbData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+}
+
+module.exports = { doFindAll, doFindOne, doCreate, doUpdate };
 
 
 
