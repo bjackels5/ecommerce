@@ -4,7 +4,16 @@ const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
 // Initialize Product model (table) by extending off Sequelize's Model class
-class Product extends Model { }
+class Product extends Model { 
+    static productAttributes = [
+        'id',
+        'product_name',
+        'price',
+        'stock',
+        'category_id'
+        // need product_tag info, too, but let's start with the easy ones above
+    ];
+}
 
 // set up fields and rules for Product model
 Product.init(
