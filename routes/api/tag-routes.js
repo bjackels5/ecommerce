@@ -1,31 +1,30 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 
+const includeProducts = [
+    {
+        model: Product,
+        as: 'tagged_products',
+        attributes: [
+            'id',
+            'product_name',
+            'price',
+            'stock',
+            'category_id'
+        ]
+    }
+]
+
+
+
+
+
 // The `/api/tags` endpoint
 
 // /api/tags
 router.get('/', (req, res) => {
     Tag.findAll({
-        include: [
-            // {
-            //     model: ProductTag,
-            //     attributes: [
-            //         'id',
-            //         'product_id',
-            //         'tag_id'
-            //     ]
-            // }
-            {
-                model: Product,
-                attributes: [
-                    'id',
-                    'product_name',
-                    'price',
-                    'stock',
-                    'category_id'
-                ]
-            }
-        ]
+        include: includeProducts
     })
         .then(dbData => res.json(dbData))
         .catch(err => {
@@ -36,25 +35,14 @@ router.get('/', (req, res) => {
 });
 
 // /api/tags/1
-router.get('/:id', (req, res) => {
+    router.get('/:id', (req, res) => {
     // find a single tag by its `id`
     // be sure to include its associated Product data
     Tag.findOne({
         where: {
             id: req.params.id
         },
-        include: [
-            {   // whole lotta nope going on here...
-                // EagerLoadingError [SequelizeEagerLoadingError]: product_tag is not associated to tag!
-                model: ProductTag,
-                as: 'tagged_products',
-                attributes: [
-                    'id',
-                    'product_id',
-                    'tag_id'
-                ]
-            }
-        ]
+        include: includeProducts
     })
         .then(dbData => {
             if (!dbData) {
