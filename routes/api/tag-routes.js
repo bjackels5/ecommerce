@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
+const { doFindAll } = require('./api-utils.js');
 
 const includeProducts = [
     {
@@ -19,14 +20,7 @@ const includeProducts = [
 
 // /api/tags
 router.get('/', (req, res) => {
-    Tag.findAll({
-        include: includeProducts
-    })
-        .then(dbData => res.json(dbData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+    doFindAll(Tag, includeProducts, res);
 });
 
 // /api/tags/1
