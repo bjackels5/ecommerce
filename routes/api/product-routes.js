@@ -139,7 +139,7 @@ router.put('/:id', (req, res) => { // nothing for me to do here
         })
         .then((updatedProductTags) => res.json(updatedProductTags))
         .catch((err) => {
-            // console.log(err);
+            console.log(err);
             res.status(400).json(err);
         });
 });

@@ -4,8 +4,6 @@ const Category = require('./Category');
 const Tag = require('./Tag');
 const ProductTag = require('./ProductTag');
 
-console.log("models/index.js");
-
 // Products belongsTo Category
 Product.belongsTo(Category, {
     foreignKey: 'category_id'
