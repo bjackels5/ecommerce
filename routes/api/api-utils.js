@@ -29,6 +29,7 @@ const doFindOne = (model, toInclude, selectedId, res) => {
         });
 }
 
+// this will only work for simple create calls that can have all the initial parameters in the initArgs
 const doCreate = (model, initArgs, res) => {
     model.create(initArgs)
         .then(dbData => res.json(dbData))
@@ -38,6 +39,7 @@ const doCreate = (model, initArgs, res) => {
         });
 };
 
+// this will only work for simple update calls that can have all the updated parameters in the updateArgs
 const doUpdate = (model, updateArgs, idToUpdate, res) => {
     model.update(
         updateArgs,
@@ -79,6 +81,3 @@ const doDelete = (model, idToDelete, res) => {
 }
 
 module.exports = { doFindAll, doFindOne, doCreate, doUpdate, doDelete };
-
-
-
