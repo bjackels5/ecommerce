@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
-const { doFindAll, doFindOne } = require('./api-utils.js');
+const { doFindAll, doFindOne, doCreate } = require('./api-utils.js');
 
 // The `/api/categories` endpoint
 
@@ -31,14 +31,16 @@ router.get('/:id', (req, res) => {
 
 router.post('/', (req, res) => {
     // create a new category
-    Category.create({
-        category_name: req.body.category_name,
-    })
-        .then(dbData => res.json(dbData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+    doCreate(Category, { category_name: req.body.category_name }, res);
+
+    // Category.create({
+    //     category_name: req.body.category_name,
+    // })
+    //     .then(dbData => res.json(dbData))
+    //     .catch(err => {
+    //         console.log(err);
+    //         res.status(500).json(err);
+    //     });
 });
 
 router.put('/:id', (req, res) => {

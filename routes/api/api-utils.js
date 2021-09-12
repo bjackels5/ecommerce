@@ -29,8 +29,16 @@ const doFindOne = (model, toInclude, selectedId, res) => {
         });
 }
 
+const doCreate = (model, initArgs, res) => {
+    model.create(initArgs)
+        .then(dbData => res.json(dbData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+};
 
-module.exports = { doFindAll, doFindOne };
+module.exports = { doFindAll, doFindOne, doCreate };
 
 
 

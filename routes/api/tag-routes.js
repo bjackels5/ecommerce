@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
-const { doFindAll, doFindOne } = require('./api-utils.js');
+const { doFindAll, doFindOne, doCreate } = require('./api-utils.js');
 
 const includeProducts = [
     {
@@ -32,14 +32,14 @@ router.get('/:id', (req, res) => {
 // /api/tags
 router.post('/', (req, res) => {
     // create a new tag
-    Tag.create({
-        tag_name: req.body.tag_name,
-    })
-        .then(dbData => res.json(dbData))
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
+    doCreate(Tag, { tag_name: req.body.tag_name }, res);
+
+    // Tag.create()
+    //     .then(dbData => res.json(dbData))
+    //     .catch(err => {
+    //         console.log(err);
+    //         res.status(500).json(err);
+    //     });
 
 });
 
