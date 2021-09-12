@@ -59,7 +59,26 @@ const doUpdate = (model, updateArgs, idToUpdate, res) => {
         });
 }
 
-module.exports = { doFindAll, doFindOne, doCreate, doUpdate };
+const doDelete = (model, idToDelete, res) => {
+    model.destroy({
+        where: {
+            id: idToDelete
+        }
+    })
+        .then(dbData => {
+            if (!dbData) {
+                res.status(404).json({ message: `No ${model.name } found with this id` });
+                return;
+            }
+            res.json(dbData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+}
+
+module.exports = { doFindAll, doFindOne, doCreate, doUpdate, doDelete };
 
 
 
