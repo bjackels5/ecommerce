@@ -15,10 +15,6 @@ const includeProducts = [
     }
 ]
 
-
-
-
-
 // The `/api/tags` endpoint
 
 // /api/tags
@@ -31,13 +27,11 @@ router.get('/', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-    // be sure to include its associated Product data
 });
 
 // /api/tags/1
-    router.get('/:id', (req, res) => {
+router.get('/:id', (req, res) => {
     // find a single tag by its `id`
-    // be sure to include its associated Product data
     Tag.findOne({
         where: {
             id: req.params.id
@@ -60,6 +54,15 @@ router.get('/', (req, res) => {
 // /api/tags
 router.post('/', (req, res) => {
     // create a new tag
+    Tag.create({
+        tag_name: req.body.tag_name,
+    })
+    .then(dbData => res.json(dbData))
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+    });
+
 });
 
 // /api/tags/1
