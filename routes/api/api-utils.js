@@ -9,7 +9,28 @@ const doFindAll = (model, toInclude, res) => {
         });
 }
 
-module.exports = { doFindAll };
+const doFindOne = (model, toInclude, selectedId, res) => {
+    model.findOne({
+        where: {
+            id: selectedId,
+        },
+        include: toInclude
+    })
+        .then(dbData => {
+            if (!dbData) {
+                res.status(404).json({ message: `No ${model.name} found with this id` });
+                return;
+            }
+            res.json(dbData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+}
+
+
+module.exports = { doFindAll, doFindOne };
 
 
 
