@@ -6,9 +6,6 @@ const ProductTag = require('./ProductTag');
 
 console.log("models/index.js");
 
-// According to the Requirements, "The functionality for creating the many-to-many relationship for products is already done for you."
-// Where did they do that?
-
 // Products belongsTo Category
 Product.belongsTo(Category, {
     foreignKey: 'category_id'

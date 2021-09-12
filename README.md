@@ -106,10 +106,10 @@ SO THAT my company can compete with other e-commerce companies
 
 <a id="techUsed"></a>
 ## Technologies Used
-Node.js
-Sequelize
-MySql2.0
-dotenv
+* Node.js
+* Sequelize
+* MySql2.0
+* dotenv
 
 --- 
 
