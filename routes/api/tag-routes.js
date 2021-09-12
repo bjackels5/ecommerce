@@ -57,17 +57,38 @@ router.post('/', (req, res) => {
     Tag.create({
         tag_name: req.body.tag_name,
     })
-    .then(dbData => res.json(dbData))
-    .catch(err => {
-        console.log(err);
-        res.status(500).json(err);
-    });
+        .then(dbData => res.json(dbData))
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
 
 });
 
 // /api/tags/1
 router.put('/:id', (req, res) => {
     // update a tag's name by its `id` value
+    Tag.update(
+        {
+            tag_name: req.body.tag_name
+        },
+        {
+            where: {
+                id: req.params.id
+            }
+        })
+        .then(dbData => {
+            if (!dbData[0]) {
+                res.status(404).json({ message: 'No tag found with this id' });
+                return;
+            }
+            res.json(dbData);
+        })
+        .catch(err => {
+            console.log(err);
+            res.status(500).json(err);
+        });
+
 });
 
 // /api/tags/1
