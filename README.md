@@ -13,8 +13,6 @@ This challenge for Module 13 of the Coding Bootcamp is to write the back end of 
 
 * [ECommerce Demo](#projectDemo)
 
-* [ECommerce URL](#projectURL) - I think the project does NOT get deployed to HEROKU, so we don't need this
-
 * [Contact Me](#contactMe)
 
 
@@ -22,9 +20,13 @@ This challenge for Module 13 of the Coding Bootcamp is to write the back end of 
 
 <a id="userStory"></a>
 ## User Story
+
 AS A manager at an internet retail company
+
 I WANT a back end for my e-commerce website that uses the latest technologies
+
 SO THAT my company can compete with other e-commerce companies
+
 --- 
 
 <a id="requirements"></a>
@@ -114,14 +116,22 @@ SO THAT my company can compete with other e-commerce companies
 --- 
 
 <a id="whatILearned"></a>
-## What I Learned
+## I learned how ...
+
+* To use Models with sequelize, including belongsTo and hasMany relationships
+* To create REST API endpoints/routes that allow for adding, updating, and deleting from the database.
+* To deploy a MySQL app to Heroku using the JawsDB add-on (part of the module lesson, but not the challenge)
+* ORMs like Sequelize help manage tricky SQL queries.
+* To protect user passwords by hashing with the bcrypt package.
+* To set up the groundwork for user authentication.
+* To perform raw SQL queries using Sequelize literals.
 
 ---
 
 <a id="webImage"></a>
 ## ECommerce Screenshot
 
-![ECommerce](./media/project-name.png)
+![ECommerce](./media/ecommerce.png)
 
 ---
 
@@ -129,7 +139,7 @@ SO THAT my company can compete with other e-commerce companies
 
 <a id="projectDemo"></a>
 
-<a href="https://youtu.be/TRyEJ-cYpcg">
+<a href="https://youtu.be/In3j5PH5Hu8">
    <img src="./media/ecommerce-demo.png">
 </a>
 

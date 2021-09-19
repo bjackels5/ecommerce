@@ -3,15 +3,17 @@ const { Model, DataTypes } = require('sequelize');
 // import our database connection from config.js
 const sequelize = require('../config/connection');
 
+// Each product has an id, name, price, quantity (stock) and category
+
 // Initialize Product model (table) by extending off Sequelize's Model class
 class Product extends Model { 
+    // these were used in a few places, and it seemed best to apply DRY in order to prevent typos
     static productAttributes = [
         'id',
         'product_name',
         'price',
         'stock',
         'category_id'
-        // need product_tag info, too, but let's start with the easy ones above
     ];
 }
 

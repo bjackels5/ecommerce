@@ -1,3 +1,6 @@
+// The findAll, findOne, create, update, and delete routes all followed a similar pattern, with the
+// exception of some of the product routes. They definitely needed some DRYing out!
+
 const doFindAll = (model, toInclude, res) => {
     model.findAll({
         include: toInclude

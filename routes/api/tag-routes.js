@@ -2,6 +2,10 @@ const router = require('express').Router();
 const { Tag, Product, ProductTag } = require('../../models');
 const { doFindAll, doFindOne, doCreate, doUpdate, doDelete } = require('./api-utils.js');
 
+// The /api/tag routes
+
+// This array slightly differs from that in category-routes, so DRYing could not be applied across files.
+// It is used by both findAll and findOne, though, so still worth pulling out as a global.
 const includeProducts = [
     {
         model: Product,
@@ -14,9 +18,9 @@ const includeProducts = [
             'category_id'
         ]
     }
-]
+];
 
-// The `/api/tags` endpoint
+// The `/api/tags` endpoints
 
 // /api/tags
 router.get('/', (req, res) => {
@@ -45,23 +49,6 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     // delete on tag by its `id` value
     doDelete(Tag, req.params.id, res);
-
-    // Tag.destroy({
-    //     where: {
-    //         id: req.params.id
-    //     }
-    // })
-    // .then(dbData => {
-    //     if (!dbData) {
-    //         res.status(404).json({ message: 'No tag found with this id' });
-    //         return;
-    //     }
-    //     res.json(dbData);
-    // })
-    // .catch(err => {
-    //     console.log(err);
-    //     res.status(500).json(err);
-    // })
 });
 
 module.exports = router;

@@ -2,8 +2,10 @@ const router = require('express').Router();
 const { Category, Product } = require('../../models');
 const { doFindAll, doFindOne, doCreate, doUpdate, doDelete } = require('./api-utils.js');
 
-// The `/api/categories` endpoint
+// The /api/category routes
 
+// This array slightly differs from that in tag-routes, so DRYing could not be applied across files.
+// It is used by both findAll and findOne, though, so still worth pulling out as a global.
 const includeProducts = [
     {
         model: Product,
